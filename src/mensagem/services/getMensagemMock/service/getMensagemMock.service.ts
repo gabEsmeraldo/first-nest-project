@@ -4,7 +4,7 @@ import { Injectable } from "@nestjs/common";
 export class GetMensagemMockService {
 	constructor() {}
 
-	async getMensagemMock(): Promise<string>{
+	getMensagemMock(): string{
 		return "Teste";
 	}
 }

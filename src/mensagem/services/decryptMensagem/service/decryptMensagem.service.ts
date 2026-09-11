@@ -4,7 +4,7 @@ import { Injectable } from "@nestjs/common";
 export class DecryptMensagemService {
     constructor() {}
     
-    decryptMensagem(mensagemEncryptada: String): String {
+    decryptMensagem(mensagemEncryptada: string): string {
         return mensagemEncryptada;
         //return mensagemDecryptada;
     }
