@@ -1,18 +1,40 @@
-import { Injectable } from "@nestjs/common";
-import { GetMensagemMockService } from "../../getMensagemMock/service/getMensagemMock.service.js";
-import { DecryptMensagemService } from "../../decryptMensagem/service/decryptMensagem.service.js";
+import { BadRequestException, Injectable, InternalServerErrorException } from "@nestjs/common";
+import { CheckMensagemMockInputDTO } from "../dto/checkMensagemMock.dto.js";
+import { CheckMensagemMockOutputDTO } from "../dto/checkMensagemMockOutput.dto.js";
 
 @Injectable()
 export class CheckMensagemMockService {
-	constructor(
-		private readonly getMensagemMockService: GetMensagemMockService,
-		private readonly decryptMensagemService: DecryptMensagemService,
-	) {}
+	constructor() {}
 	
-	async checkMensagemMock(decryptMensagem: string): Promise<Boolean> {
-		const mensagemMock = await this.getMensagemMockService.getMensagemMock()
-		const mensagemDecryptada = await this.decryptMensagemService.decryptMensagem(decryptMensagem)
+	async execute(data: string): Promise<CheckMensagemMockOutputDTO> {
+		
+		try{
+			if(!data) throw new BadRequestException('Error')
+			return { checked: await this.decryptMensagem(data) === this.getMensagemMock() }//this.decrypted;
+		} catch (error) {
+			console.log('catch');
+			if (error instanceof BadRequestException) throw error
+			throw new InternalServerErrorException(error)
+		}
+	}
 
-		return mensagemDecryptada == mensagemMock
+	async decryptMensagem(mensagem_encryptada: string): Promise<string> {
+        const default_list: string = "abcdefghijklmnopqrstuvwxyz123456790 "
+        const secret_key: string = "nzsdylxc9r3f0wg1i aeb2v7kq46ojphumt5"
+        let decryptada: string = "";
+        mensagem_encryptada = mensagem_encryptada.toLowerCase();
+
+        for(let index:number = 0; index < mensagem_encryptada.length; index++){
+            let char = mensagem_encryptada.slice(index, index+1);
+            let value = secret_key.indexOf(char);
+            let decrypted_char = default_list[value];
+            decryptada += decrypted_char;
+        }
+        console.log(decryptada);
+        return decryptada;
+    }
+
+	getMensagemMock(): string{
+		return "ola gabriel";
 	}
 }
