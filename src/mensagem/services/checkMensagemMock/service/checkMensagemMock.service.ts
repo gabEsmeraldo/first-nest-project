@@ -1,16 +1,15 @@
 import { BadRequestException, Injectable, InternalServerErrorException } from "@nestjs/common";
-import { CheckMensagemMockInputDTO } from "../dto/checkMensagemMock.dto.js";
 import { CheckMensagemMockOutputDTO } from "../dto/checkMensagemMockOutput.dto.js";
+import { CheckMensagemMockInputDTO } from "../dto/checkMensagemMock.dto.js";
 
 @Injectable()
 export class CheckMensagemMockService {
 	constructor() {}
 	
-	async execute(data: string): Promise<CheckMensagemMockOutputDTO> {
+	async execute(data: CheckMensagemMockInputDTO): Promise<CheckMensagemMockOutputDTO> {
 		
 		try{
-			if(!data) throw new BadRequestException('Error')
-			return { checked: await this.decryptMensagem(data) === this.getMensagemMock() }//this.decrypted;
+			return { checked: await this.decryptMensagem(data.mensagem) === this.getMensagemMock() }
 		} catch (error) {
 			console.log('catch');
 			if (error instanceof BadRequestException) throw error
@@ -23,12 +22,8 @@ export class CheckMensagemMockService {
         const secret_key: string = "nzsdylxc9r3f0wg1i aeb2v7kq46ojphumt5"
         let decryptada: string = "";
         mensagem_encryptada = mensagem_encryptada.toLowerCase();
-
         for(let index:number = 0; index < mensagem_encryptada.length; index++){
-            let char = mensagem_encryptada.slice(index, index+1);
-            let value = secret_key.indexOf(char);
-            let decrypted_char = default_list[value];
-            decryptada += decrypted_char;
+            decryptada += default_list[secret_key.indexOf(mensagem_encryptada.slice(index, index+1))];
         }
         console.log(decryptada);
         return decryptada;

@@ -5,6 +5,6 @@ export class CheckMensagemMockInputDTO {
     @ApiProperty()
     @IsNotEmpty()
     @IsString()
-    @MinLength(1)
+    @MinLength(3)
     mensagem: string;
 }
