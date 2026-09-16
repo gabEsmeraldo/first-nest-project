@@ -11,7 +11,6 @@ export class CheckMensagemMockService {
 		try{
 			return { checked: await this.decryptMensagem(data.mensagem) === this.getMensagemMock() }
 		} catch (error) {
-			console.log('catch');
 			if (error instanceof BadRequestException) throw error
 			throw new InternalServerErrorException(error)
 		}
@@ -25,7 +24,6 @@ export class CheckMensagemMockService {
         for(let index:number = 0; index < mensagem_encryptada.length; index++){
             decryptada += default_list[secret_key.indexOf(mensagem_encryptada.slice(index, index+1))];
         }
-        console.log(decryptada);
         return decryptada;
     }
 
