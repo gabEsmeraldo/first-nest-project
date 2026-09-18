@@ -1,7 +1,7 @@
 import { BadRequestException, Injectable, InternalServerErrorException } from "@nestjs/common";
 import { CheckMensagemMockOutputDTO } from "../dto/checkMensagemMockOutput.dto.js";
 import { CheckMensagemMockInputDTO } from "../dto/checkMensagemMock.dto.js";
-import { DecryptService } from "../../../../shared/decrypt/services/decrypt.service.js";
+import { DecryptService } from "../../../../shared/decrypt/decrypt.service.js";
 
 @Injectable()
 export class CheckMensagemMockService {

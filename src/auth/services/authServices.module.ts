@@ -3,7 +3,8 @@ import { GetAuthTokenService } from './getAuthToken/service/getAuthToken.service
 import { AuthController } from '../controller/auth.controller.js';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
-import { DecryptModule } from '../../shared/decrypt/decrypt.module.js';
+import { SharedModule } from '../../shared/shared.module.js';
+import { DecryptService } from '../../shared/decrypt/decrypt.service.js';
 
 @Module({
     imports: [
@@ -12,11 +13,11 @@ import { DecryptModule } from '../../shared/decrypt/decrypt.module.js';
             global: true,
             secret: "eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImlhdCI6MTUxNjIzOTAyMn0"
         }),
-        DecryptModule
     ],
     controllers: [AuthController],
     providers: [
         GetAuthTokenService,
+        DecryptService,
     ],
 })
 export class AuthServicesModule {}

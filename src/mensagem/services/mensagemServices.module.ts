@@ -1,13 +1,14 @@
 import { Module } from '@nestjs/common';
 import { MensagemController } from '../controller/mensagem.controller.js';
 import { CheckMensagemMockService } from './checkMensagemMock/service/checkMensagemMock.service.js';
-import { DecryptModule } from '../../shared/decrypt/decrypt.module.js';
+import { DecryptService } from '../../shared/decrypt/decrypt.service.js';
 
 @Module({
-    imports: [DecryptModule],
+    imports: [],
     controllers: [MensagemController],
     providers: [
         CheckMensagemMockService,
+        DecryptService,
     ],
 })
 export class MensagemServicesModule {}

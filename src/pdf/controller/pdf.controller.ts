@@ -11,7 +11,7 @@ export class PdfController {
     @UseGuards(JwtAuthGuard)
     async getPdfFile(@Res() res: Response): Promise<void>{
         const buffer = await this.getPdfService.execute();
-
+    
         res.set({
             'Content-Type': 'application/pdf',
             'Content-Disposition': 'attachment; filename=teste.pdf',

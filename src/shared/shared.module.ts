@@ -1,8 +1,7 @@
 import { Module } from '@nestjs/common';
-import { DecryptModule } from './decrypt/decrypt.module.js';
 
 @Module({
-    imports: [DecryptModule],
-    exports: [DecryptModule],
+    imports: [],
+    exports: [],
 })
 export class SharedModule {}
