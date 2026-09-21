@@ -1,5 +1,15 @@
+import { Type } from "class-transformer";
+import { IsBoolean, IsInt, IsString, MinLength } from "class-validator";
+
 export class GetExcelDTO {
-    nome?: string;
-    idade?: number;
+    @IsString()
+    @MinLength(3)
+    nome: string;
+
+    @IsInt()
+    @Type(() => Number)
+    idade: number;
+    
+    @IsBoolean()
     desempregado?: boolean;
 }

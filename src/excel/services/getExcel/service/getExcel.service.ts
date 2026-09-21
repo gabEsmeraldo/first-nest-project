@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, InternalServerErrorException } from "@nestjs/common";
 import { GetExcelDTO } from "../dto/getExcel.dto.js";
 import type { Response } from 'express';
 import * as XLSX from 'xlsx';
@@ -7,20 +7,23 @@ import * as XLSX from 'xlsx';
 export class GetExcelService{
     constructor() {}
     async execute(data: GetExcelDTO[], res: Response): Promise<void> {
-        const worksheet = XLSX.utils.json_to_sheet(data);
-        const workbook = XLSX.utils.book_new();
-        XLSX.utils.book_append_sheet(workbook, worksheet, "Teste")
+        try{
+            const worksheet = XLSX.utils.json_to_sheet(data);
+            worksheet["!cols"] = [ { wch: data.reduce((w, r) => Math.max(w, r.nome.length), 10) } ]
+            const workbook = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(workbook, worksheet, "usuários")
 
-        XLSX.utils.sheet_add_aoa(worksheet, [["Nome", "Idade", "Desempregado"]], { origin: "A1"});
+            const buffer = XLSX.write(workbook, { bookType: 'xlsx', compression: true, type: 'buffer' });
 
-        const buffer = XLSX.write(workbook, { bookType: 'xlsx', compression: true, type: 'buffer' });
-
-        res.set({
-            'Content-Type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-            'Content-Disposition': 'attachment; filename=teste.xlsx',
-            // 'Content-Length': buffer.length,
-        })
-        
-        res.end(buffer);
+            res.set({
+                'Content-Type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+                'Content-Disposition': 'attachment; filename=teste.xlsx',
+                'Content-Length': buffer.length,
+            })
+            
+            res.end(buffer);
+        }catch (error){
+            throw new InternalServerErrorException(error)
+        }
     }
 }
