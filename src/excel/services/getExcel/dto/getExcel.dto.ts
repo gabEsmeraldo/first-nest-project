@@ -1,5 +1,5 @@
 import { Type } from "class-transformer";
-import { IsBoolean, IsInt, IsString, MinLength } from "class-validator";
+import { IsBoolean, IsDate, IsInt, IsString, MinLength } from "class-validator";
 
 export class GetExcelDTO {
     @IsString()
@@ -12,4 +12,7 @@ export class GetExcelDTO {
     
     @IsBoolean()
     desempregado?: boolean;
+
+    @IsDate()
+    data: Date;
 }

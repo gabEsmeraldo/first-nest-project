@@ -8,6 +8,7 @@ export class GetExcelService{
     constructor() {}
     async execute(data: GetExcelDTO[], res: Response): Promise<void> {
         try{
+            data = this.validateDate(data);
             const worksheet = XLSX.utils.json_to_sheet(data);
             worksheet["!cols"] = [ { wch: data.reduce((w, r) => Math.max(w, r.nome.length), 10) } ]
             const workbook = XLSX.utils.book_new();
@@ -25,5 +26,13 @@ export class GetExcelService{
         }catch (error){
             throw new InternalServerErrorException(error)
         }
+    }
+
+    validateDate(data: GetExcelDTO[]): GetExcelDTO[]{
+        data.forEach(element => {
+            let [dia, mes, ano] = element.data.toString().split("/")
+            element.data = new Date(`${ano}-${mes}-${dia} 01:00`)
+        });
+        return data;
     }
 }
