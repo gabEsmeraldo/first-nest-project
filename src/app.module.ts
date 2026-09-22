@@ -9,6 +9,7 @@ import { SharedModule } from './shared/shared.module.js';
 import { PdfModule } from './pdf/pdf.module.js';
 import { AuthModule } from './auth/auth.module.js';
 import { ExcelModule } from './excel/excel.module.js';
+import { ProvaModule } from './prova/prova.module.js';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { ExcelModule } from './excel/excel.module.js';
     PdfModule,
     AuthModule,
     ExcelModule,
+    ProvaModule,
   ],
   controllers: [AppController],
   providers: [AppService],

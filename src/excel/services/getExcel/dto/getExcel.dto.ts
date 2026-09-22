@@ -11,8 +11,8 @@ export class GetExcelDTO {
     idade: number;
     
     @IsBoolean()
-    desempregado?: boolean;
+    desempregado: boolean;
 
     @IsDate()
-    data: Date;
+    data: any;
 }

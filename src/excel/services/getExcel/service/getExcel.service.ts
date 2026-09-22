@@ -11,6 +11,12 @@ export class GetExcelService{
             data = this.validateDate(data);
             const worksheet = XLSX.utils.json_to_sheet(data);
             worksheet["!cols"] = [ { wch: data.reduce((w, r) => Math.max(w, r.nome.length), 10) } ]
+            worksheet["!cols"][2] = { wch: 12 } 
+            worksheet["!cols"][3] = { wch: 12 }
+            
+            for ( let i = 1; i <= data.length; i++) {
+                worksheet[`D${i+1}`].z = "dd/mm/yyyy"
+            }
             const workbook = XLSX.utils.book_new();
             XLSX.utils.book_append_sheet(workbook, worksheet, "usuários")
 
@@ -31,7 +37,10 @@ export class GetExcelService{
     validateDate(data: GetExcelDTO[]): GetExcelDTO[]{
         data.forEach(element => {
             let [dia, mes, ano] = element.data.toString().split("/")
-            element.data = new Date(`${ano}-${mes}-${dia} 01:00`)
+            element.data = new Date(`${ano}-${mes}-${dia} 00:00`)
+            element.data = element.data.getDate() === Number(dia) &&
+            element.data.getMonth() === Number(mes)-1 &&
+            element.data.getFullYear() === Number(ano) ? element.data : undefined;
         });
         return data;
     }
