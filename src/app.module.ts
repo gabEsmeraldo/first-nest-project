@@ -12,12 +12,12 @@ import { ExcelModule } from './excel/excel.module.js';
 import { ProvaModule } from './prova/prova.module.js';
 
 @Module({
-  imports: [
+  imports: [ SharedModule,
     MensagemModule,
     ValorModule,
     UsuarioModule,
     CepModule,
-    SharedModule,
+   
     PdfModule,
     AuthModule,
     ExcelModule,

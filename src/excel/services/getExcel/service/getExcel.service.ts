@@ -2,6 +2,7 @@ import { Injectable, InternalServerErrorException } from "@nestjs/common";
 import { GetExcelDTO } from "../dto/getExcel.dto.js";
 import type { Response } from 'express';
 import * as XLSX from 'xlsx';
+// var XLSX = require('xlsx');
 
 @Injectable()
 export class GetExcelService{

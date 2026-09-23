@@ -7,7 +7,7 @@ export class UpdateDataService {
     constructor(private readonly updateDataRepository: UpdateDataRepository) {}
     async execute(data: UpdateDataDTO): Promise<void> {
         try{
-            if (typeof data.data != "string" && typeof data.data != "number") { throw new BadRequestException('os dados foram inseridos incorretamente') }
+            if (typeof data.data != "string" && typeof data.data != "number" && typeof data.data != "boolean") { throw new BadRequestException('os dados foram inseridos incorretamente') }
             return await this.updateDataRepository.updateData<typeof data.data>(data.data);
         }catch (error) {
             if (error instanceof BadRequestException) throw error;
