@@ -18,6 +18,7 @@ export class DatabaseService {
     (async () => {
       await this.createPool();
     })();
+
   }
 
   async createPool() {
@@ -61,8 +62,8 @@ export class DatabaseService {
       await connection.commit();
       await connection.close();
     } catch (err) {
-      this.logger.error(`commitAndClose: ${err.stack}`);
-      throw new Error(err);
+      this.logger.error(`commitAndClose: ${err}`);
+      throw new Error();
     }
   }
 
@@ -85,8 +86,8 @@ export class DatabaseService {
 
       await connection.close();
     } catch (err) {
-      this.logger.error(`rollbackAndClose: ${err.stack}`);
-      throw new Error(err);
+      this.logger.error(`rollbackAndClose: ${err}`);
+      throw new Error();
     }
   }
 
@@ -133,8 +134,8 @@ export class DatabaseService {
       return rows;
     } catch (err) {
       if (isLogging) this.logger.debug(`query: ${sql}`);
-      this.logger.error(`query: ${err.stack}`);
-      throw new Error(err);
+      this.logger.error(`query: ${err}`);
+      throw new Error();
     }
   }
 
@@ -167,8 +168,8 @@ export class DatabaseService {
       return result;
     } catch (err) {
       if (isLogging) this.logger.debug(`queryBindOut: ${sql}`);
-      this.logger.error(`queryBindOut: ${err.stack}`);
-      throw new Error(err);
+      this.logger.error(`queryBindOut: ${err}`);
+      throw new Error();
     }
   }
 
@@ -219,8 +220,8 @@ export class DatabaseService {
       if (isLogging) {
         this.logger.debug(`executeMany: ${sql}`);
       }
-      this.logger.error(`executeMany: ${err.stack}`);
-      throw new Error(err);
+      this.logger.error(`executeMany: ${err}`);
+      throw new Error();
     }
   }
 }
