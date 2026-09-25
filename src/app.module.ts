@@ -10,18 +10,20 @@ import { PdfModule } from './pdf/pdf.module.js';
 import { AuthModule } from './auth/auth.module.js';
 import { ExcelModule } from './excel/excel.module.js';
 import { ProvaModule } from './prova/prova.module.js';
+import { BancoUsuarioModule } from './bancoUsuario/bancoUsuario.module.js';
 
 @Module({
-  imports: [ SharedModule,
+  imports: [ 
     MensagemModule,
     ValorModule,
     UsuarioModule,
     CepModule,
-   
+    SharedModule,
     PdfModule,
     AuthModule,
     ExcelModule,
     ProvaModule,
+    BancoUsuarioModule,
   ],
   controllers: [AppController],
   providers: [AppService],
