@@ -11,9 +11,15 @@ import { AuthModule } from './auth/auth.module.js';
 import { ExcelModule } from './excel/excel.module.js';
 import { ProvaModule } from './prova/prova.module.js';
 import { BancoUsuarioModule } from './bancoUsuario/bancoUsuario.module.js';
+import { ConfigModule } from '@nestjs/config';
+import { DatabaseModule } from './shared/database/database.module.js';
 
 @Module({
   imports: [ 
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: '.env',
+    }),
     MensagemModule,
     ValorModule,
     UsuarioModule,
@@ -24,6 +30,7 @@ import { BancoUsuarioModule } from './bancoUsuario/bancoUsuario.module.js';
     ExcelModule,
     ProvaModule,
     BancoUsuarioModule,
+    DatabaseModule
   ],
   controllers: [AppController],
   providers: [AppService],
