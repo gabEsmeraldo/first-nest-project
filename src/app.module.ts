@@ -12,6 +12,7 @@ import { ExcelModule } from './excel/excel.module.js';
 import { ProvaModule } from './prova/prova.module.js';
 import { BancoUsuarioModule } from './bancoUsuario/bancoUsuario.module.js';
 import { ConfigModule } from '@nestjs/config';
+import { DatabaseModule } from './shared/database/database.module.js';
 
 @Module({
   imports: [ 
@@ -29,6 +30,7 @@ import { ConfigModule } from '@nestjs/config';
     ExcelModule,
     ProvaModule,
     BancoUsuarioModule,
+    DatabaseModule
   ],
   controllers: [AppController],
   providers: [AppService],

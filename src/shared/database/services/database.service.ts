@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Injectable, Logger } from '@nestjs/common';
-import * as oracledb from 'oracledb';
+import oracledb from 'oracledb';
 
 @Injectable()
 export class DatabaseService {
@@ -12,6 +12,7 @@ export class DatabaseService {
   constructor() {
     this.oracle = oracledb as typeof oracledb & { OBJECT: number };
     this.poolAlias = '';
+
     oracledb.initOracleClient();
 
     (async () => {
@@ -116,7 +117,7 @@ export class DatabaseService {
       let rows: T[] = [];
 
       if (result && result.rows && result.rows.length > 0) {
-        rows = result.rows.map((one: Record<string, unknown>) => {
+        rows = result.rows.map((one: any) => {
           const newValues: Record<string, unknown> = {};
 
           Object.keys(one).forEach(
@@ -172,7 +173,7 @@ export class DatabaseService {
     }
   }
 
-  async closePoolAndExit() {
+  closePoolAndExit = async () => {
     try {
       await this.oracle.getPool(this.poolAlias).close(10);
 
@@ -182,7 +183,7 @@ export class DatabaseService {
     } catch (err) {
       process.exit(1);
     }
-  }
+  };
 
   async executeManyRecords<T>(
     sql: string,

@@ -1,4 +1,4 @@
-import * as oracledb from 'oracledb';
+import type * as oracledb from 'oracledb';
 
 export interface IDatabase {
     createPool(): Promise<void>;
