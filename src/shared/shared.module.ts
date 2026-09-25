@@ -1,7 +1,8 @@
 import { Module } from '@nestjs/common';
+import { DatabaseModule } from './database/database.module.js';
 
 @Module({
-    imports: [],
-    exports: [],
+    imports: [DatabaseModule],
+    exports: [DatabaseModule],
 })
 export class SharedModule {}
