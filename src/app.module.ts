@@ -11,9 +11,14 @@ import { AuthModule } from './auth/auth.module.js';
 import { ExcelModule } from './excel/excel.module.js';
 import { ProvaModule } from './prova/prova.module.js';
 import { BancoUsuarioModule } from './bancoUsuario/bancoUsuario.module.js';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [ 
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: '.env',
+    }),
     MensagemModule,
     ValorModule,
     UsuarioModule,
