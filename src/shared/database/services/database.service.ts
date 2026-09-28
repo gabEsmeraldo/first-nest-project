@@ -13,12 +13,16 @@ export class DatabaseService {
     this.oracle = oracledb as typeof oracledb & { OBJECT: number };
     this.poolAlias = '';
 
+    // oracledb.initOracleClient({
+    //   libDir: process.env.LIB_DIR
+    // });
+
     oracledb.initOracleClient();
 
     (async () => {
       await this.createPool();
     })();
-
+    
   }
 
   async createPool() {
@@ -34,7 +38,7 @@ export class DatabaseService {
         poolTimeout: 60,
         poolAlias: this.poolAlias,
       });
-
+      
       this.logger.warn(`Conexão iniciada!`);
 
       process

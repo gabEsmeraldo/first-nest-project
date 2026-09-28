@@ -8,7 +8,7 @@ import { CepModule } from './cep/cep.module.js';
 import { SharedModule } from './shared/shared.module.js';
 import { PdfModule } from './pdf/pdf.module.js';
 import { AuthModule } from './auth/auth.module.js';
-import { ExcelModule } from './excel/excel.module.js';
+// import { ExcelModule } from './excel/excel.module.js';
 import { ProvaModule } from './prova/prova.module.js';
 import { BancoUsuarioModule } from './bancoUsuario/bancoUsuario.module.js';
 import { ConfigModule } from '@nestjs/config';
@@ -27,7 +27,7 @@ import { DatabaseModule } from './shared/database/database.module.js';
     SharedModule,
     PdfModule,
     AuthModule,
-    ExcelModule,
+    // ExcelModule,
     ProvaModule,
     BancoUsuarioModule,
     DatabaseModule
