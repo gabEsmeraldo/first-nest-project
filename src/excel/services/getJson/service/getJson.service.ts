@@ -1,6 +1,6 @@
 import { Injectable, InternalServerErrorException } from "@nestjs/common";
-import * as XLSX from 'xlsx'
 import { GetJsonUserDTO } from "../dto/getJsonUser.dto.js";
+import * as XLSX from 'xlsx'
 
 @Injectable()
 export class GetJsonService{

@@ -7,15 +7,11 @@ export class DatabaseService {
   private logger = new Logger('DatabaseService');
 
   public oracle: typeof oracledb & { OBJECT: number };
-  public poolAlias = '';
+  public poolAlias = 'TASY';
 
   constructor() {
     this.oracle = oracledb as typeof oracledb & { OBJECT: number };
-    this.poolAlias = '';
-
-    // oracledb.initOracleClient({
-    //   libDir: process.env.LIB_DIR
-    // });
+    this.poolAlias = 'TASY';
 
     oracledb.initOracleClient();
 
@@ -38,7 +34,6 @@ export class DatabaseService {
         poolTimeout: 60,
         poolAlias: this.poolAlias,
       });
-      
       this.logger.warn(`Conexão iniciada!`);
 
       process
