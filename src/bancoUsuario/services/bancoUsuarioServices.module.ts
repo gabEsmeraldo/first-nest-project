@@ -5,6 +5,8 @@ import { GetUsuariosRepository } from './getUsuarios/repository/getUsuarios.repo
 import { DatabaseModule } from '../../shared/database/database.module.js';
 import { GetUsuarioService } from './getUsuario/service/getUsuario.service.js';
 import { GetUsuarioRepository } from './getUsuario/repository/getUsuario.repository.js';
+import { GetUsuariosPaginatedService } from './getUsuariosPaginated/service/getUsuariosPaginated.service.js';
+import { GetUsuariosPaginatedRepository } from './getUsuariosPaginated/repository/getUsuariosPaginated.repository.js';
 
 @Module({
     imports: [DatabaseModule],
@@ -14,6 +16,8 @@ import { GetUsuarioRepository } from './getUsuario/repository/getUsuario.reposit
         GetUsuariosRepository,
         GetUsuarioService,
         GetUsuarioRepository,
+        GetUsuariosPaginatedService,
+        GetUsuariosPaginatedRepository,
     ],
 })
 export class BancoUsuarioServicesModule {}
