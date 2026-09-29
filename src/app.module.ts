@@ -13,9 +13,14 @@ import { ProvaModule } from './prova/prova.module.js';
 import { BancoUsuarioModule } from './bancoUsuario/bancoUsuario.module.js';
 import { ConfigModule } from '@nestjs/config';
 import { DatabaseModule } from './shared/database/database.module.js';
+import { BullModule } from '@nestjs/bullmq'
 
 @Module({
   imports: [ 
+    BullModule.forRoot({
+      connection: { host: 'localhost', port: 6379 }
+    }),
+    BullModule.registerQueue({ name: 'fila' }),
     ConfigModule.forRoot({
       isGlobal: true,
       envFilePath: '.env',
