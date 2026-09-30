@@ -14,16 +14,16 @@ import { BancoUsuarioModule } from './bancoUsuario/bancoUsuario.module.js';
 import { ConfigModule } from '@nestjs/config';
 import { DatabaseModule } from './shared/database/database.module.js';
 import { BullModule } from '@nestjs/bullmq'
+import { FilaModule } from './fila/fila.module.js';
 
 @Module({
-  imports: [ 
-    BullModule.forRoot({
-      connection: { host: 'localhost', port: 6379 }
-    }),
-    BullModule.registerQueue({ name: 'fila' }),
+  imports: [
     ConfigModule.forRoot({
       isGlobal: true,
       envFilePath: '.env',
+    }), 
+    BullModule.forRoot({
+      connection: { host: process.env.REDIS_HOST , port: process.env.REDIS_PORT, password: process.env.REDIS_PASSWORD }
     }),
     MensagemModule,
     ValorModule,
@@ -35,7 +35,8 @@ import { BullModule } from '@nestjs/bullmq'
     ExcelModule,
     ProvaModule,
     BancoUsuarioModule,
-    DatabaseModule
+    DatabaseModule,
+    FilaModule,
   ],
   controllers: [AppController],
   providers: [AppService],

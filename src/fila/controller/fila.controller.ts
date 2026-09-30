@@ -6,7 +6,7 @@ import { AddJobService } from "../services/postFila/service/addJob.service.js";
 export class FilaController{
     constructor(private readonly addJobService: AddJobService){}
 
-    @Post('addJob')
+    @Post('addjob')
     async addJob(@Query() data: AddJobDTO){
         return await this.addJobService.execute(data);
     }
