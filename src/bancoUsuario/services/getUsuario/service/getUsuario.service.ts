@@ -8,7 +8,9 @@ export class GetUsuarioService{
 
     async execute(nome: string): Promise<GetUsuarioDTO[]>{
         try {
-            return await this.getUsuarioRepository.getUsuario(nome);
+            const result = await this.getUsuarioRepository.getUsuario(nome);
+            if (result.length == 0) {throw new NotFoundException('Usuário não encontrado')}
+            return result;
         } catch (error) {
             if (error instanceof NotFoundException) throw error;
             throw new InternalServerErrorException(error);

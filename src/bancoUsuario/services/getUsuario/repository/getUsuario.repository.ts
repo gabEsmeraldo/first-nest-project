@@ -8,12 +8,11 @@ export class GetUsuarioRepository{
 
     async getUsuario(nome: string): Promise<GetUsuarioDTO[]>{
         const sql = `
-            SELECT NM_USUARIO AS "NOME", DS_USUARIO AS "DESCRICAO" FROM TASY.USUARIO WHERE NM_USUARIO = :nome
+            SELECT NM_USUARIO AS NOME, DS_USUARIO AS DESCRICAO FROM TASY.USUARIO WHERE NM_USUARIO = :nome
         `;
 
         const binds = { nome };
         const result = await this.db_1.query<GetUsuarioDTO>(sql, binds);
-        if (result.length == 0) {throw new NotFoundException('Usuário não encontrado')}
         return result;
     }
 }

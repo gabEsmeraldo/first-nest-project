@@ -10,6 +10,6 @@ export class FilaProcessor extends WorkerHost {
 
     @OnWorkerEvent('completed')
     onCompleted(job: Job){
-        console.log(`Job com id ${job.id} completo`)
+        console.log(`Job com id ${job.id} completo \n mensagem: ${job.data.mensagem}`)
     }
 }
