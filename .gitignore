@@ -1,3 +1,5 @@
+# Data files
+/src/shared/files/*
 # compiled output
 /dist
 /node_modules
