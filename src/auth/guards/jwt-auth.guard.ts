@@ -5,13 +5,12 @@ import { Request } from 'express';
 @Injectable()
 export class JwtAuthGuard implements CanActivate{
     async canActivate(context: ExecutionContext): Promise<boolean> {
-        const jwt = new JwtService();
-        const request = context.switchToHttp().getRequest();
-        const token = this.extractTokenFromHeader(request)
-        if (!token){
-            throw new UnauthorizedException();
-        }
         try{
+            const jwt = new JwtService();
+            const token = this.extractTokenFromHeader(context.switchToHttp().getRequest())
+            if (!token){
+                throw new UnauthorizedException();
+            }
             await jwt.verifyAsync(token, {
                 secret: "eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImlhdCI6MTUxNjIzOTAyMn0",
             });

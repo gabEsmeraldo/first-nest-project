@@ -4,11 +4,7 @@ import PDFDocument from 'pdfkit';
 
 @Injectable()
 export class GetPdfService {
-    async execute(){
-        return this.generatePDF()
-    }
-
-    async generatePDF(): Promise<Buffer> {
+    async execute(): Promise<Buffer>{
         const pdfBuffer: Buffer = await new Promise(resolve => {
             const doc = new PDFDocument({
                 size: 'A4',

@@ -12,7 +12,6 @@ export class GetUsuarioRepository{
         `;
 
         const binds = { nome };
-        const result = await this.db_1.query<GetUsuarioDTO>(sql, binds);
-        return result;
+        return await this.db_1.query<GetUsuarioDTO>(sql, binds);
     }
 }

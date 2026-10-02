@@ -36,7 +36,7 @@ export class GetExcelService{
 
     validateDate(data: GetExcelDTO[]): GetExcelDTO[]{
         data.forEach(element => {
-            let [dia, mes, ano] = element.data.toString().split("/")
+            const [dia, mes, ano] = element.data.toString().split("/")
             element.data = new Date(`${ano}-${mes}-${dia} 00:00`)
             element.data = element.data.getDate() === Number(dia) &&
             element.data.getMonth() === Number(mes)-1 &&

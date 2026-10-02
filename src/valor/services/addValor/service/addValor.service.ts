@@ -1,13 +1,16 @@
-import { BadRequestException, Injectable, InternalServerErrorException } from "@nestjs/common";
+import { Injectable, InternalServerErrorException } from "@nestjs/common";
 import { AddValorInputDTO } from "../dto/addValor.dto.js";
 import { AddValorRepository } from "../repository/addValor.repository.js";
 
 @Injectable()
 export class AddValorService {
-    constructor(private readonly repository: AddValorRepository) {}
+    constructor(private readonly addValorRepository: AddValorRepository) {}
     async execute(data: AddValorInputDTO): Promise<void> {
         try {
-            await this.repository.addValor(data.valor);
+            const valores = await this.addValorRepository.findAll();
+            let posicao = 0;
+            while(valores[posicao] < data.valor){posicao++}
+            await this.addValorRepository.addValor(data.valor, posicao);
             await this.logValores(data.ordem);
         } catch(error) {
             throw new InternalServerErrorException(error);
@@ -15,7 +18,7 @@ export class AddValorService {
     }
 
     async logValores(ordem: string): Promise<void>{
-        const valores = await this.repository.findAll();
+        const valores = await this.addValorRepository.findAll();
         console.log('Valores:');
         try{
             switch (ordem) {

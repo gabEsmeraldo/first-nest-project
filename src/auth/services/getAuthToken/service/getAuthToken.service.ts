@@ -10,19 +10,15 @@ export class GetAuthTokenService{
         private readonly decryptService: DecryptService,
     ) {}
     async execute(data: string): Promise<GetAuthTokenOutputDTO> {
-        const auth_return:GetAuthTokenOutputDTO = {}
         try{
-            data = await this.decryptService.decrypt(data);
-            if(data === 'senhamassademais'){
-                auth_return.access_token = await this.jwtService.signAsync({},{
+            if(await this.decryptService.decrypt(data) === 'senhamassademais'){
+                return await this.jwtService.signAsync({},{
                     secret: "eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImlhdCI6MTUxNjIzOTAyMn0",
                     expiresIn: '1d',
-                })
+                }) as GetAuthTokenOutputDTO
             }
         }catch{
             throw new UnauthorizedException();
         }
-        
-        return auth_return;
     }
 }

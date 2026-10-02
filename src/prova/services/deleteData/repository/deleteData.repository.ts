@@ -24,6 +24,4 @@ export class DeleteDataRepository {
     async checkFileEmpty(data: string): Promise<boolean>{
         return (await fs.readFile(path.join(this.dir_path, data), 'utf8')).length == 0
     }
-
-    // async checkFile
 }

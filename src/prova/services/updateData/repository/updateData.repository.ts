@@ -15,10 +15,6 @@ export class UpdateDataRepository{
     }
 
     async updateData<T extends string | number | boolean>(data :T): Promise<void>{
-        // if (typeof data === "string") return await fs.writeFile(path.join(this.dir_path, 'nome.csv'), data.toString())
-        // if (typeof data === "number") return await fs.writeFile(path.join(this.dir_path, 'valor.csv'), data.toString())
-        // if (typeof data === "boolean") return await fs.writeFile(path.join(this.dir_path, 'boolean.csv'), data.toString())
-        // return;
         return await fs.writeFile(path.join(this.dir_path, `${typeof data}.csv`), data.toString());
     }
 }

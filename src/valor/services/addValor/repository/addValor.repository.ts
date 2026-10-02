@@ -5,19 +5,16 @@ import * as fs from "node:fs/promises";
 @Injectable()
 export class AddValorRepository {
     constructor() {}
-    async addValor(valor: number): Promise<void> {
+    async addValor(valor: number, posicao: number): Promise<void> {
         const valores = await this.findAll();
-        // let index = this.checkInsertIndex(valores, valor);
-        let index = 0;
-        while(valores[index] < valor){index++}
-        console.log(`adding ${valor} at ${index}`)
+        console.log(`adding ${valor} at ${posicao}`)
         return (await fs.writeFile(
             'src/valor/services/addValor/repository/data.csv', 
             JSON.stringify(
                 (valores
-                    .slice(0,index)
+                    .slice(0,posicao)
                     .concat(valor)
-                    .concat(valores.slice(index,valores.length)))
+                    .concat(valores.slice(posicao,valores.length)))
                     .map(
                         (num) => {return { valor: num };})), 
             'utf-8'));

@@ -8,16 +8,14 @@ export class CheckMensagemMockService {
 	constructor(private readonly decryptService: DecryptService) {}
 	
 	async execute(data: CheckMensagemMockInputDTO): Promise<CheckMensagemMockOutputDTO> {
-		
 		try{
 			return { checked: await this.decryptService.decrypt(data.mensagem) === this.getMensagemMock() }
 		} catch (error) {
-			if (error instanceof BadRequestException) throw error
 			throw new InternalServerErrorException(error)
 		}
 	}
 
 	getMensagemMock(): string{
-		return "ola gabriel";
+		return "senhamassademais";
 	}
 }

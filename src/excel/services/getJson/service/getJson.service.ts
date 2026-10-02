@@ -19,11 +19,12 @@ export class GetJsonService{
     }
     validateDate(data: GetJsonUserDTO[]): GetJsonUserDTO[]{
         data.forEach(element => {
-            if(element.data){
-                element.data = new Date(element.data).toLocaleDateString('pt-BR')
-            }else {
-                element.data = undefined
-            }
+            element.data = element.data ? new Date(element.data).toLocaleDateString('pt-BR') : undefined
+            // if(element.data){
+            //     element.data = new Date(element.data).toLocaleDateString('pt-BR')
+            // }else {
+            //     element.data = undefined
+            // }
         });
         return data;
     }

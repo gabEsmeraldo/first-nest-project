@@ -15,6 +15,7 @@ export class GetUsuariosPaginatedRepository{
         const result = await this.db_1.query<{ total: number}>(sql);
         return result[0]?.total;
     }
+    
     async getUsuariosPaginated(data: GetUsuariosPaginatedQueryDTO): Promise<GetUsuariosPaginatedListDTO[]>{
         const sql = `
             SELECT NM_USUARIO AS "NOME", DS_USUARIO AS "DESCRICAO" 

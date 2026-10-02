@@ -10,8 +10,9 @@ export class GetUsuariosPaginatedService{
     async execute(data: GetUsuariosPaginatedQueryDTO): Promise<GetUsuariosPaginatedOutputDTO>{
         try {
             const count = await this.getUsuariosPaginatedRepository.getUsuariosCount();
-            data.page = Math.ceil(count/data.size) > data.page ?
-            data.page : Math.ceil(count/data.size)
+            // data.page = Math.ceil(count/data.size) > data.page ?
+            // data.page : Math.ceil(count/data.size)
+            data.page = Math.min(Math.ceil(count/data.size), data.page)
             return {
                 total: count,
                 page: data.page,
