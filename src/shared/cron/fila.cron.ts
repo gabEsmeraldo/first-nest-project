@@ -7,14 +7,15 @@ import { Queue } from "bullmq";
 export class FilaCron {
     constructor(@InjectQueue('fila') private readonly filaQueue: Queue){}
 
-    @Cron('45 * * * * *')
+    @Cron('45 * * * * *', { disabled: Boolean(process.env.CRON_DISABLED)})
     // @Interval(5000)
     // @Timeout(10000)
     handleCron() {
+        console.log(Boolean(process.env.CRON_DISABLED))
         this.filaQueue.add(
             'cronJob',
             {
-                mensagem: 'Este é um cronjob',
+                mensagem: 'Este é um cronjob teste',
                 name: 'cronJob',
             }
         );
