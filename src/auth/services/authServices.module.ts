@@ -3,7 +3,6 @@ import { GetAuthTokenService } from './getAuthToken/service/getAuthToken.service
 import { AuthController } from '../controller/auth.controller.js';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
-import { SharedModule } from '../../shared/shared.module.js';
 import { DecryptService } from '../../shared/decrypt/decrypt.service.js';
 
 @Module({

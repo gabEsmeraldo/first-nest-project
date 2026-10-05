@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { DatabaseService } from "../../../../shared/database/services/database.service.js";
-import { GetUsuariosPaginatedQueryDTO } from "../dto/GetUsuariosPaginatedQuery.dto.js";
+import { GetUsuariosPaginatedQueryDTO } from "../dto/getUsuariosPaginatedQuery.dto.js";
 import { GetUsuariosPaginatedListDTO } from "../dto/getUsuariosPaginatedList.dto.js";
 
 @Injectable()

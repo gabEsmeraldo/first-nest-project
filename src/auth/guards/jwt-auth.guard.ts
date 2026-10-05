@@ -13,9 +13,9 @@ export class JwtAuthGuard implements CanActivate{
                 secret: "eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImlhdCI6MTUxNjIzOTAyMn0",
             });
             return true;
-        }catch {
-            throw new UnauthorizedException();
-        }
+        }catch (error) { 
+            throw new UnauthorizedException(error)
+        };
     }
 
     private extractTokenFromHeader(request: Request): string | undefined {

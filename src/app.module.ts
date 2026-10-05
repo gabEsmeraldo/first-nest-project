@@ -15,6 +15,7 @@ import { ConfigModule } from '@nestjs/config';
 import { DatabaseModule } from './shared/database/database.module.js';
 import { BullModule } from '@nestjs/bullmq'
 import { FilaModule } from './fila/fila.module.js';
+import { ScheduleModule } from '@nestjs/schedule';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { FilaModule } from './fila/fila.module.js';
     BullModule.forRoot({
       connection: { host: process.env.REDIS_HOST , port: process.env.REDIS_PORT, password: process.env.REDIS_PASSWORD }
     }),
+    ScheduleModule.forRoot(),
     MensagemModule,
     ValorModule,
     UsuarioModule,

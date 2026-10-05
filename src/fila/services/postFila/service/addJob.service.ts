@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, InternalServerErrorException } from "@nestjs/common";
 import { AddJobDTO } from "../dto/addJob.dto.js";
 import { InjectQueue } from "@nestjs/bullmq";
 import { Queue } from "bullmq";
@@ -8,15 +8,19 @@ export class AddJobService {
     constructor(@InjectQueue('fila') private readonly filaQueue: Queue){}
 
     async execute(data: AddJobDTO){
-        await this.filaQueue.add(
-            'addJob',
-            {
-                mensagem: data.mensagem,
-                name: 'job',
-            }
-        );
-        return {
-            message: 'Job added to queue',
-        };
+        try {
+            await this.filaQueue.add(
+                'addJob',
+                {
+                    mensagem: data.mensagem,
+                    name: 'job',
+                }
+            );
+            return {
+                message: 'Job added to queue',
+            };
+        } catch (error) {
+            throw new InternalServerErrorException(error)
+        }
     }
 }

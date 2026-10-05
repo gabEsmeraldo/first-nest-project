@@ -1,5 +1,5 @@
 import { Injectable, InternalServerErrorException } from "@nestjs/common";
-import { GetUsuariosPaginatedQueryDTO } from "../dto/GetUsuariosPaginatedQuery.dto.js";
+import { GetUsuariosPaginatedQueryDTO } from "../dto/getUsuariosPaginatedQuery.dto.js";
 import { GetUsuariosPaginatedOutputDTO } from "../dto/getUsuariosPaginatedOutput.dto.js";
 import { GetUsuariosPaginatedRepository } from "../repository/getUsuariosPaginated.repository.js";
 

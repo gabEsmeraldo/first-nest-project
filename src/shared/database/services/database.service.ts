@@ -13,7 +13,10 @@ export class DatabaseService {
     this.oracle = oracledb as typeof oracledb & { OBJECT: number };
     this.poolAlias = 'TASY';
 
-    oracledb.initOracleClient();
+    // oracledb.initOracleClient();
+    oracledb.initOracleClient({
+      libDir: '/usr/lib/instantclient',
+    });
 
     (async () => {
       await this.createPool();

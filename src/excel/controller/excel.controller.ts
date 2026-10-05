@@ -1,7 +1,7 @@
 import { Body, Controller, Post, Res, UploadedFile, UseInterceptors } from '@nestjs/common';
 import type { Response } from 'express';
 import { FileInterceptor } from '@nestjs/platform-express';
-import {  GetJsonUserDTO } from '../services/getJson/dto/getJsonUser.dto.js';
+import { GetJsonUserDTO } from '../services/getJson/dto/getJsonUser.dto.js';
 import { GetJsonService } from '../services/getJson/service/getJson.service.js';
 import { GetExcelService } from '../services/getExcel/service/getExcel.service.js';
 import { GetExcelDTO } from '../services/getExcel/dto/getExcel.dto.js';

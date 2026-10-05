@@ -4,7 +4,7 @@ import { GetUsuariosDTO } from "../services/getUsuarios/dto/getUsuarios.dto.js";
 import { GetUsuarioDTO } from "../services/getUsuario/dto/getUsuario.dto.js";
 import { GetUsuarioService } from "../services/getUsuario/service/getUsuario.service.js";
 import { GetUsuariosPaginatedService } from "../services/getUsuariosPaginated/service/getUsuariosPaginated.service.js";
-import { GetUsuariosPaginatedQueryDTO } from "../services/getUsuariosPaginated/dto/GetUsuariosPaginatedQuery.dto.js";
+import { GetUsuariosPaginatedQueryDTO } from "../services/getUsuariosPaginated/dto/getUsuariosPaginatedQuery.dto.js";
 import { GetUsuariosPaginatedOutputDTO } from "../services/getUsuariosPaginated/dto/getUsuariosPaginatedOutput.dto.js";
 
 @Controller('bancoUsuario')

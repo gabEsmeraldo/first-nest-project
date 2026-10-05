@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from "@nestjs/common";
+import { Injectable } from "@nestjs/common";
 import { DatabaseService } from "../../../../shared/database/services/database.service.js";
 import { GetUsuarioDTO } from "../dto/getUsuario.dto.js";
 

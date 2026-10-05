@@ -4,6 +4,14 @@ import { Logger } from "@nestjs/common";
 export class FilaEventListener extends QueueEventsHost {
     @OnQueueEvent('added')
     onAdded(job: {jobId: number; name: string}){
-        Logger.log(`Job with id: ${job.jobId} added to queue`)
+        switch (job.name) {
+            case 'addJob':
+                    Logger.log(`Job with id: ${job.jobId} added to queue`)
+                break;
+            case 'cronJob':
+                    Logger.log(`Job with id: ${job.jobId} added to queue from cronJob`)
+            default:
+                break;
+        }
     }
 }
