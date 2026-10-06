@@ -13,11 +13,19 @@ services:
       - .env
     depends_on:
       - redis
+    networks:
+      - first-nest-network
 
   redis:
     image: redis:latest
     volumes:
       - redis-data:/data
+    networks:
+      - first-nest-network
+
+networks:
+  first-nest-network:
+    external: true
   
 volumes:
   redis-data: {}

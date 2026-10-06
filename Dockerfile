@@ -48,8 +48,8 @@ COPY --from=builder /usr/src/app/package*.json ./
 COPY --from=builder /usr/src/app/node_modules ./node_modules
 COPY --from=builder /usr/src/app/dist ./dist
 
-RUN chown -R node:node /usr/src/app
-USER node
+# RUN chown -R node:node /usr/src/app
+# USER node
 
 EXPOSE 3000
 

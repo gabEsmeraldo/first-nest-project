@@ -4,6 +4,7 @@ import { FilaProcessor } from './queue/fila.worker.js';
 import { FilaEventListener } from './queue/fila.eventListener.js';
 import { FilaCron } from './cron/fila.cron.js';
 import { BullModule } from '@nestjs/bullmq';
+import { ConsumerProviders } from './queue/http/consumer.providers.js';
 
 @Module({
     imports: [
@@ -15,6 +16,7 @@ import { BullModule } from '@nestjs/bullmq';
         FilaProcessor,
         FilaEventListener,
         FilaCron,
+        ...ConsumerProviders,
     ],
 })
 export class SharedModule {}
