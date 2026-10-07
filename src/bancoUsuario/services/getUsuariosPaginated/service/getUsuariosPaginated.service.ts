@@ -13,11 +13,12 @@ export class GetUsuariosPaginatedService{
             // data.page = Math.ceil(count/data.size) > data.page ?
             // data.page : Math.ceil(count/data.size)
             data.page = Math.min(Math.ceil(count/data.size), data.page)
+            const result = await this.getUsuariosPaginatedRepository.getUsuariosPaginated(data)
             return {
                 total: count,
                 page: data.page,
-                size: data.size,
-                data: await this.getUsuariosPaginatedRepository.getUsuariosPaginated(data)
+                size: result.length,
+                data: result
             }
         } catch (error) {
             throw new InternalServerErrorException(error)

@@ -23,11 +23,12 @@ export class GetUsersService{
             // data.page : Math.ceil(result.length/data.page_size)
 
             data.page = Math.min(Math.ceil(result.length/data.page_size), data.page)
+            const return_data = result.slice((data.page - 1) * data.page_size, data.page * data.page_size)
             return {
                 total: result.length,
                 page: data.page,
-                page_size: data.page_size,
-                data: result.slice((data.page - 1) * data.page_size, data.page * data.page_size)
+                page_size: return_data.length,
+                data: return_data
             }
         }catch (error){
             throw new InternalServerErrorException;
