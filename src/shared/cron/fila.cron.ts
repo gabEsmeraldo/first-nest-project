@@ -7,8 +7,8 @@ import { Queue } from "bullmq";
 export class FilaCron {
     constructor(@InjectQueue('fila') private readonly filaQueue: Queue){}
 
-    // @Cron('45 * * * * *', { disabled: process.env.CRON_ENABLED == "FALSE"})
-    @Interval(900)
+    @Cron('45 * * * * *', { disabled: process.env.CRON_ENABLED == "FALSE"})
+    // @Interval(1000)
     // @Timeout(10000)
     handleCron() {
         this.filaQueue.add(
