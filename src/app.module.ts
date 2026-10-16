@@ -16,6 +16,7 @@ import { DatabaseModule } from './shared/database/database.module.js';
 import { BullModule } from '@nestjs/bullmq'
 import { FilaModule } from './fila/fila.module.js';
 import { ScheduleModule } from '@nestjs/schedule';
+import { CpfModule } from './cpf/cpf.module.js';
 
 @Module({
   imports: [
@@ -39,6 +40,7 @@ import { ScheduleModule } from '@nestjs/schedule';
     BancoUsuarioModule,
     DatabaseModule,
     FilaModule,
+    CpfModule,
   ],
   controllers: [AppController],
   providers: [AppService],

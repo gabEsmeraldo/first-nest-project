@@ -10,5 +10,4 @@ export class UsuarioController {
     async getUsuarios(@Query() data: GetUsersQueryDTO): Promise<GetUsersOutputDTO>{
         return this.getUsersService.execute(data);
     }
-
 }
